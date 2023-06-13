@@ -38,9 +38,30 @@ namespace Gestor_de_estudante
         {
             MEU_BD bancoDeDados = new MEU_BD();
 
-            MySqlDataAdapter adaptador = new MySqlDataAdapter ()
+            MySqlDataAdapter adaptador = new MySqlDataAdapter();
             DataTable tabela = new DataTable();
             MySqlCommand comando = new MySqlCommand("SELECT * FROM `usuarios` WHERE 1`username` @usn AND `senha` = @psw", bancoDeDados.getConexao);
+
+            comando.Parameters.Add("@usn", MySqlDbType.VarChar).Value = txtUsuario.Text;
+            comando.Parameters.Add("@psw", MySqlDbType.VarChar).Value = txtSenha.Text;
+
+            adaptador.SelectCommand = comando;
+
+            adaptador.Fill(tabela);
+
+            if (tabela.Rows.Count > 0)
+            {
+                MessageBox.Show("YES");
+
+            }
+            else
+            {
+                MessageBox.Show("NO");
+            
+            }
+
+
+
         }
     }
 }
