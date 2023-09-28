@@ -4,26 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using System.Data;
+using System.Data; 
 
-namespace Gestor_de_estudante
+namespace student_manager
 {
     internal class MEU_BD
     {
-        private MySqlConnection conexao = new MySqlConnection("datasource=localhost;username=root;password=;database=sga_estudantes_bd");
+        
+        
+        private MySqlConnection conexao = new MySqlConnection("datasource=localhost;username=root;password=;database=t5_sga_bd");
 
+        
         public MySqlConnection getConexao
         {
-            get { return conexao; }
-
+            get
+            {
+                return conexao;
+            }
         }
-        public void abrirConexao()
+
+        
+        public void abrirConexao() 
         {
             if (conexao.State == ConnectionState.Closed)
             {
                 conexao.Open();
             }
         }
+
+        
         public void fecharConexao()
         {
             if (conexao.State == ConnectionState.Open)
